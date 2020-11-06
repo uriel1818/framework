@@ -22,10 +22,11 @@ class menus_model extends core_model
             $nodes = $this->getChilds(0);
         };
         foreach ($nodes as $node) {
-            if ($childs = $this->getChilds($node->id)) {
+            $Childs = $this->getChilds($node->id);
+            if ($Childs) {
                 $array[] = array(
                     'Nombre' => $node->nombre,
-                    'Hijos' => $this->getArray($childs),
+                    'Hijos' => $this->getArray($Childs),
                 );
             } else {
                 $array[] = $node;

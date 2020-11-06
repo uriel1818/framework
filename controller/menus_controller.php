@@ -13,9 +13,25 @@ class menus_controller extends core_controller
     }
 public function testing()
 {
-    $array = $this->menus->getArray();
+    
     echo "<pre>";
     print_r($array);
     echo "</pre>";
+
+   
+}
+public function mostrarLista(){
+    $array = $this->menus->getArray();
+    foreach ($array as $item) {
+        if(is_array($item)){
+            echo "<ul>";
+            $this->mostrarLista();
+            echo "</ul>";
+        }else{
+            echo "<li>";
+            echo $item->nombre;
+            echo "</li>";
+        }
+    }
 }
 }
