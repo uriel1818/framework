@@ -54,7 +54,7 @@ class migration_model extends core_model
                 controller varchar(100) default NULL,
                 action varchar(100) default NULL,
                 params varchar(100) default NULL,
-                padre integer default NULL
+                padre integer default 0
             );',
         ];
 
@@ -105,7 +105,7 @@ class migration_model extends core_model
             "INSERT INTO unidades (nombre,abreviacion) VALUES ('Mes','MM');",
             "INSERT INTO unidades (nombre,abreviacion) VALUES ('Año','AAAA');",
             "INSERT INTO usuarios (nombre,password) VALUES ('uriel','teclado');",
-            "INSERT INTO menus (nombre,controller) VALUES ('Productos','productos')",
+            "INSERT INTO menus (nombre,controller) VALUES ('Producto','productos')",
             "INSERT INTO menus (nombre,controller) VALUES ('Costos fijos','index')",
             "INSERT INTO menus (nombre,controller) VALUES ('Test','index')",
             "INSERT INTO menus (nombre,controller) VALUES ('Test 2','index')",

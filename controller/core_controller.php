@@ -31,10 +31,10 @@ class core_controller
    }
 
 
-   protected function setName($name = NOMBRE_SITIO)
+   protected function setName($name = DEFAULT_CONTROLLER)
    {
       if (!isset($_GET['c'])) {
-         $this->name = DEFAULT_CONTROLLER;
+         $this->name = $name;
       } else {
          $this->name = $_GET['c'];
       }

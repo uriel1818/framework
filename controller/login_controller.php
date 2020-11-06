@@ -9,7 +9,6 @@ use app\controller\core_controller;
 
 class login_controller extends core_controller
 {
-    private $userModel;
     public function __construct()
     {
         if (isset($_SESSION['usuario'])) {

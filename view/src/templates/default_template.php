@@ -18,18 +18,6 @@
 
 <body>
   
-<nav class="navbar">
-<div class="navbar-brand">
-<a href="<?php ROOTURL?>" class="navbar-item">
-<img src="<?php echo IMAGENES.'logo.jpeg'; ?>" alt="CapitanCook">
-</a>
-</div>
-<div class="navbar-menu">
-<a href="#" class="navbar-item">Productos</a>
-</div>
-</nav>      
-
-
   <?php
 
   require_once $data['view'];
