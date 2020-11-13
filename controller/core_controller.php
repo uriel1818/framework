@@ -8,7 +8,7 @@ class core_controller
    protected $data = array();
    protected $loginCheck = true;
    protected $template;
-   protected $name;
+   protected $controller_name;
 
    public function __construct()
    {
@@ -17,12 +17,12 @@ class core_controller
       $this->addCss('bulma.min');
       $this->addScript('functions');
       $this->setTemplate();
-      $this->setView($this->name);
-      $this->setTitle($this->name);
+      $this->setView($this->controller_name);
+      $this->setTitle($this->controller_name);
    }
 
 
-   protected function load_helper($helperName)
+   protected function loadHelper($helperName)
    {
       require_once HELPERS . $helperName . HELPERS_EXT;
       $nameSpace = 'app\\helpers\\' . $helperName . '_helper';
@@ -33,10 +33,9 @@ class core_controller
 
    protected function setName($name = DEFAULT_CONTROLLER)
    {
-      if (!isset($_GET['c'])) {
-         $this->name = $name;
-      } else {
-         $this->name = $_GET['c'];
+      $this->controller_name = $name;
+      if (isset($_GET['c']) && file_exists(CONTROLLER . $_GET['c'] . CONTROLLER_EXT)) {
+         $this->controller_name = $_GET['c'];
       }
    }
    protected function addModel($model)
@@ -47,7 +46,7 @@ class core_controller
       $this->models[$model] = $class;
       return $class;
    }
-   
+
    protected function loginCheck()
    {
       if (!isset($_SESSION['usuario']) and $this->loginCheck == true) {

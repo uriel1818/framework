@@ -19,7 +19,7 @@ class login_controller extends core_controller
         $this->loginCheck = false;
         $this->addModel('usuarios');
         $this->setTemplate('blank');
-        $helper = $this->load_helper('form');
+        $helper = $this->loadHelper('form_validations');
         $helper->setValidation('nombre', array('required', 'hasWhiteSpaces'));
         $helper->setValidation('password', array('required', 'hasWhiteSpaces'));
         $this->data['errors'] = $helper->validate();

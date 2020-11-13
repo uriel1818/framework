@@ -7,7 +7,7 @@
  */
 namespace app\helpers;
 
-class form_helper
+class form_validations_helper
 {
     private $errors;
     public $validations;

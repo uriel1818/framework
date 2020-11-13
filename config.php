@@ -14,6 +14,7 @@ define('IMAGENES',SRC.'images/');
 define('CSS', SRC . 'css/');
 define('TEMPLATES', SRC . 'templates/');
 define('JAVASCRIPT',SRC.'javascript/');
+define('HTML_COMPONENTS',SRC.'html_components/');
 
 /** Variables default */
 define('DEFAULT_CONTROLLER','index');
@@ -31,5 +32,6 @@ define('VIEW_EXT','_view.php');
 define('CONTROLLER_EXT','_controller.php');
 define('HELPERS_EXT','_helper.php');
 define('TEMPLATES_EXT','_template.php');
+define('HTML_COMPONENTS_EXT','_component.html');
 
 /** Menus y variables propias del diseño */
