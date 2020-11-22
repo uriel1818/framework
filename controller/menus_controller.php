@@ -11,18 +11,21 @@ class menus_controller extends core_controller
     private $menus;
     private $menu_helper;
     private $menu_name;
+    private $form_generator_helper;
     public function __construct()
     {
         parent::__construct();
         $this->menus = $this->addModel('menus');
-        $this->menu_helper = $this->loadHelper('menu');
+        $this->menu_helper = $this->loadHelper('menus');
+        $this->form_generator_helper = $this->loadHelper('form_generator');
         $this->menu_name = 'menu';
+        
     }
 
-/**
- * traigo la base de datos de menus grabada en forma de arbol
- *  y la ordeno en un array multinivel para leerlo más fácil desde menu_helper.php que me genera el html del menu
- */
+    /**
+     * traigo la base de datos de menus grabada en forma de arbol
+     *  y la ordeno en un array multinivel para leerlo más fácil desde menu_helper.php que me genera el html del menu
+     */
     private function makeArray($nodes = FALSE)
     {
         $array = array();
@@ -42,8 +45,9 @@ class menus_controller extends core_controller
         }
         return $array;
     }
-    private function getMenuPath(){
-        return HTML_COMPONENTS.$this->menu_name.HTML_COMPONENTS_EXT;
+    private function getMenuPath()
+    {
+        return HTML_COMPONENTS . $this->menu_name . HTML_COMPONENTS_EXT;
     }
 
     /**
@@ -55,7 +59,7 @@ class menus_controller extends core_controller
     {
         $array = $this->makeArray();
         $html = $this->menu_helper->getMenu($array);
-        file_put_contents($this->getMenuPath(),$html);
+        file_put_contents($this->getMenuPath(), $html);
     }
     
     public function index()

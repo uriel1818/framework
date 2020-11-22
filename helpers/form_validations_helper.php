@@ -21,7 +21,7 @@ class form_validations_helper
             $this->errors[$input][] = $error;
     }
 
-    /** VALIDACIONES */
+    /** START VALIDATIONS */
     public function required($input)
     {
         if (empty($_POST[$input])) {
@@ -34,7 +34,7 @@ class form_validations_helper
             $this->addError($input, 'No se puede agregar espacios en blanco en ' . strtoupper($input));
         }
     }
-    /** FIN VALIDACIONES */
+    /** END VALIDATIONS */
 
     public function validate()
     {

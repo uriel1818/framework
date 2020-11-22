@@ -1,12 +1,14 @@
 
-function showHideMenu() {
-    let element = document.getElementById('menu_lateral')
-    let status = element.className;
 
-    if (status == 'is-hidden') {
-        status = 'column is-3';
+function showHideMenu() {
+    let menu = document.getElementById('menu_lateral')
+    let navbarButton = document.getElementById('navbar-button');
+
+    if (menu.className == 'menu is-hidden-mobile') {
+        menu.className = 'menu';
+        navbarButton.className = 'navbar-burger burger is-hidden-tablet is-active'
     } else {
-        status = 'is-hidden';
+        menu.className = 'menu is-hidden-mobile';
+        navbarButton.className = "navbar-burger burger is-hidden-tablet"
     }
-    element.className = status;
-}
+};
