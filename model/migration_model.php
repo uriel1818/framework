@@ -54,7 +54,12 @@ class migration_model extends core_model
                 controller varchar(100) default NULL,
                 action varchar(100) default NULL,
                 params varchar(100) default NULL,
-                padre integer default 0
+                padre integer default 0,
+                fk_menus_ubicaciones INTEGER DEFAULT NULL REFERENCES menus_ubicaciones
+            );',
+            'CREATE TABLE IF NOT EXISTS menus_ubicaciones(
+                id integer primary key,
+                nombre varchar(100)
             );',
         ];
 
@@ -80,13 +85,13 @@ class migration_model extends core_model
             "DROP TABLE IF EXISTS imagenes_productos",
             "DROP TABLE IF EXISTS unidades",
             "DROP TABLE IF EXISTS menus",
-
+            "DROP TABLE IF EXISTS menus_ubicaciones",
         ];
         foreach ($querys as $query) {
             try {
                 $this->db->exec($query);
             } catch (\Throwable $th) {
-                echo '<h4 style="color:red">Error al llenar tablas</h4>';
+                echo '<h4 style="color:red">Error al eliminar tablas</h4>';
                 echo $th->getMessage();
 
                 exit;
@@ -119,6 +124,8 @@ class migration_model extends core_model
             "INSERT INTO menus (nombre,controller,padre) VALUES ('Test_hijo','index',5)",
             "INSERT INTO menus (nombre,controller,padre) VALUES ('Test_hijo_2','index',5)",
             "INSERT INTO menus (nombre,controller,padre) VALUES ('Test_hijo_3','index',5)",
+            "INSERT INTO menus_ubicaciones(nombre) VALUES ('navbar')",
+            "INSERT INTO menus_ubicaciones(nombre) VALUES ('lateral')",
 
         ];
         foreach ($querys as $query) {

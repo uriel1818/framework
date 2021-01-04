@@ -11,20 +11,18 @@ class menus_controller extends core_controller
     private $menus;
     private $menu_helper;
     private $menu_name;
-    private $form_generator_helper;
     public function __construct()
     {
         parent::__construct();
         $this->menus = $this->addModel('menus');
         $this->menu_helper = $this->loadHelper('menus');
-        $this->form_generator_helper = $this->loadHelper('form_generator');
         $this->menu_name = 'menu';
         
     }
 
     /**
-     * traigo la base de datos de menus grabada en forma de arbol
-     *  y la ordeno en un array multinivel para leerlo más fácil desde menu_helper.php que me genera el html del menu
+     * Traigo la base de datos de menus grabada en forma de arbol
+     * y la ordeno en un array multinivel para leerlo más fácil después.
      */
     private function makeArray($nodes = FALSE)
     {
@@ -45,26 +43,30 @@ class menus_controller extends core_controller
         }
         return $array;
     }
+
+
     private function getMenuPath()
     {
         return HTML_COMPONENTS . $this->menu_name . HTML_COMPONENTS_EXT;
     }
 
-    /**
-     * -Genero un array con los datos de la base de datos que me pasa el modelo.
-     * -Armo la estructura HTML y la guardo en una variable.
-     * -Guardo el HTML en un archivo para no tener que generar todo con cada consulta del cliente.
-     */
-    private function getMenuHtml()
+    private function getMenusHtml()
     {
+        /** -Genero un array con los datos de la base de datos que me pasa el modelo.*/
         $array = $this->makeArray();
+
+
+        /** -Armo la estructura HTML y la guardo en una variable.*/
         $html = $this->menu_helper->getMenu($array);
+
+
+        /** -Guardo el HTML en un archivo para no tener que generar todo con cada consulta del cliente. */
         file_put_contents($this->getMenuPath(), $html);
     }
     
     public function index()
     {
-        $this->getMenuHtml();
+        $this->getMenusHtml();
         $this->data['menu'] = $this->getMenuPath();
         $this->run();
     }

@@ -21,10 +21,21 @@
       <div class="navbar-brand">
         <a href="./index.php" class="navbar-item brand-text"><b><?php echo NOMBRE_SITIO ?></b></a>
         <a onclick="showHideMenu()" class="navbar-burger burger is-hidden-tablet" id="navbar-button">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-danger" href="<?php echo $this->urlMaker('login', 'logout'); ?>">
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -32,10 +43,13 @@
 
   <div class="container">
     <div class="columns">
+
+      <!-- Importo el menú lateral -->
       <div class="column is-3">
         <?php require_once HTML_COMPONENTS . "menu" . HTML_COMPONENTS_EXT; ?>
       </div>
-      <div class="column is-9">
+
+      <div class="column is-9 pr-0">
         <?php require_once $data['view']; ?>
       </div>
     </div>
