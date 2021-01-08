@@ -7,17 +7,16 @@ require_once 'core' . CONTROLLER_EXT;
 use app\controller\core_controller;
 
 class menus_controller extends core_controller
+
 {
-    private $menus;
     private $menu_helper;
-    private $menu_name;
+    private $ubicacion;
+
     public function __construct()
     {
         parent::__construct();
-        $this->menus = $this->addModel('menus');
+        $this->addModel('menus');
         $this->menu_helper = $this->loadHelper('menus');
-        $this->menu_name = 'menu';
-        
     }
 
     /**
@@ -28,10 +27,10 @@ class menus_controller extends core_controller
     {
         $array = array();
         if (!$nodes) {
-            $nodes = $this->menus->getChilds(0);
+            $nodes = $this->modes['menus']->getChilds(0);
         };
         foreach ($nodes as $node) {
-            $Childs = $this->menus->getChilds($node['id']);
+            $Childs = $this->modes['menus']->getChilds($node['id']);
             if ($Childs) {
                 $array[] = array(
                     'Padre' => $node,
@@ -45,9 +44,9 @@ class menus_controller extends core_controller
     }
 
 
-    private function getMenuPath()
+    private function getMenuPath($name)
     {
-        return HTML_COMPONENTS . $this->menu_name . HTML_COMPONENTS_EXT;
+        return HTML_COMPONENTS . $name . HTML_COMPONENTS_EXT;
     }
 
     private function getMenusHtml()
@@ -61,13 +60,16 @@ class menus_controller extends core_controller
 
 
         /** -Guardo el HTML en un archivo para no tener que generar todo con cada consulta del cliente. */
-        file_put_contents($this->getMenuPath(), $html);
+        file_put_contents($this->getMenuPath('navbar'), $html);
     }
-    
+    public function createNavbarHtmlFile()
+    {
+        
+    }
     public function index()
     {
         $this->getMenusHtml();
-        $this->data['menu'] = $this->getMenuPath();
+        $this->data['menu'] = $this->getMenuPath('navbar');
         $this->run();
     }
 }

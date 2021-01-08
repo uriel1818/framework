@@ -23,4 +23,16 @@ class menus_model extends core_model
         $nodes = $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
         return $nodes;
     }
+    public function getMenusByUbicacion($ubicacion)
+    {
+        $query = "select menus.*
+        from menus 
+        where id = (
+        select id 
+        from menus_ubicaciones
+        where nombre = '" . $ubicacion .  "'
+        );"
+        ;
+        $nodes = $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

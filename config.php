@@ -1,10 +1,10 @@
 <?php
 
 /**Estructura de directorios */
-define('NOMBRE_SITIO', 'CapitanCook');
-define('SLOGAN', 'tus postres ahora más ricos');
+define('NOMBRE_SITIO', 'BrandiSeguros');
+define('SLOGAN', 'Más seguro que nunca');
 define('ROOT', './');
-define('ROOTURL','localhost.capitancook/');
+define('ROOTURL','localhost.BrandiSeguros/');
 define('MODEL', ROOT . 'model/');
 define('VIEW', ROOT. 'view/');
 define('CONTROLLER', ROOT . 'controller/');

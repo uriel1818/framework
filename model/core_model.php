@@ -36,6 +36,5 @@ class core_model
         $obj = $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id = ' . $this->id);
         return $obj->fetchAll();
     }
-
     
 }
