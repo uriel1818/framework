@@ -12,8 +12,7 @@ class core_controller
 
    public function __construct()
    {
-
-      $this->setName();
+      $this->setControllerName();
       $this->addCss('bulma.min');
       $this->addScript('functions');
       $this->setTemplate();
@@ -31,7 +30,7 @@ class core_controller
    }
 
 
-   protected function setName($name = DEFAULT_CONTROLLER)
+   protected function setControllerName($name = DEFAULT_CONTROLLER)
    {
       $this->controller_name = $name;
       if (isset($_GET['c']) && file_exists(CONTROLLER . $_GET['c'] . CONTROLLER_EXT)) {
@@ -109,16 +108,6 @@ class core_controller
       ob_start();
       require_once $this->template;
       ob_end_flush();
-   }
-
-   //creo base de datos, elimino datos de las tablas y las vuelvo a llenar con datos de prueba.
-   public function createDb()
-   {
-      $this->addModel('migration');
-      $this->models['migration']->dropTables();
-      $this->models['migration']->createTables();
-      $this->models['migration']->fillTablesDemo();
-      $this->irA('index');
    }
    public function index()
    {
