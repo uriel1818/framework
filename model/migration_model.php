@@ -52,7 +52,32 @@ class migration_model extends core_model
     {
         $query = 
         "
-            CREATE TABLE IF NOT EXISTS 
+            CREATE TABLE IF NOT EXISTS terceros(
+                id integer primary key,
+                nombre varchar(100) not null,
+                fk_terceros_tipo integer not null references terceros_tipo
+            );
+
+            CREATE TABLE IF NOT EXISTS terceros_tipo(
+                id integer primary key,
+                nombre varchar(50)
+            );
+
+            CREATE TABLE IF NOT EXISTS terceros_telefonos(
+                id integer primary key,
+                numero integer,
+                fk_terceros integer not null references tereros
+            );
+
+            CREATE TABLE IF NOT EXISTS terceros_direcciones(
+                id integer primary key,
+                direccion varchar(100),
+                barrio varchar(100),
+                localidad varchar(100),
+                provincia varchar(100),
+                fk_terceros integer not null references tereros
+            );
+
         ";
         try {
             $this->db->exec($query);
@@ -68,6 +93,10 @@ class migration_model extends core_model
             DROP TABLE IF EXISTS usuarios;
             DROP TABLE IF EXISTS menus;
             DROP TABLE IF EXISTS menus_ubicaciones;
+            DROP TABLE IF EXISTS terceros;
+            DROP TABLE IF EXISTS terceros_tipo;
+            DROP TABLE IF EXISTS terceros_telefonos;
+
             ";
 
         try {
@@ -85,6 +114,8 @@ class migration_model extends core_model
             INSERT INTO menus (nombre,controller) VALUES ('Producto','productos');
             INSERT INTO menus_ubicaciones(nombre) VALUES ('navbar');
             INSERT INTO menus_ubicaciones(nombre) VALUES ('lateral');
+            INSERT INTO terceros_tipo(nombre) VALUES ('persona');
+            INSERT INTO terceros_tipo(nombre) VALUES ('empresa');
             ";
 
         try {

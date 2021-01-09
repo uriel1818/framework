@@ -1,54 +1,56 @@
-<div class="hero is-fullheight">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                    <h1 class="title"><?php echo $data['title'] . ' | ' . NOMBRE_SITIO; ?></h1>
+<section class="w3-container">
+    <div class="w3-display-container" style="height:100vh">
+        <div class="w3-display-middle w3-col l6 m10 s12 w3-center">
 
-                    <?php if (isset($data['errors']['usuario'])) : ?>
-                        <p class="notification is-danger">
-                            <?php echo $data['errors']['usuario']; ?>
-                        </p>
+            <!-- Traigo el nombre de la app y el titulo de la página-->
+            <div class="">
+                <h1><?php echo $data['title'] . ' | ' . NOMBRE_SITIO; ?></h1>
+            </div>
+
+            <!-- Muestro errores al logearse -->
+            <?php if (isset($data['errors']['usuario'])) : ?>
+                <p class="w3-text-red">
+                    <?php echo $data['errors']['usuario']; ?>
+                </p>
+            <?php endif; ?>
+
+            <!-- Formulario de login -->
+            <div class="w3-container w3-padding-16 w3-card w3-round-large">
+                <form action="index.php?c=login&a=login" method="post">
+
+                    <!-- Defino el INPUT NOMBRE con las validaciones de errores -->
+                    <input required type="text" name="nombre" id="nombre" class="w3-input <?php if (isset($data['errors']['nombre'])) {
+                                                                                                echo 'w3-border-red w3-border';
+                                                                                            } ?>">
+                    <label for="nombre" class="w3-small w3-left">Nombre</label>
+                    <?php if (isset($data['errors']['nombre'])) : ?>
+                        <?php foreach ($data['errors']['nombre'] as $error) : ?>
+                            <p class="w3-text-red w3-small"><?php echo $error; ?></p>
+                        <?php endforeach ?>
                     <?php endif; ?>
 
-                    <form action="index.php?c=login" method="POST" class="box has-background-light">
-                        <div class="field">
-                            <label class="label">* Usuario</label>
-                            <div class="control">
-                                <input required type="text" name="nombre" class="input has-text-centered <?php if (isset($data['errors']['nombre'])) {
-                                                                                                                echo 'is-danger';
-                                                                                                            } ?>">
-                            </div>
-                            <?php if (isset($data['errors']['nombre'])) : ?>
-                                <?php foreach ($data['errors']['nombre'] as $error) : ?>
-                                    <p class="help is-danger"><?php echo $error; ?></p>
-                                <?php endforeach ?>
-                            <?php endif; ?>
+                    <!-- Defino el INPUT PASSWORD con las validaciones de errores -->
+                    <input required type="password" name="password" id="password" class="w3-input <?php if (isset($data['errors']['password'])) {
+                                                                                                        echo 'w3-border-red w3-border';
+                                                                                                    } ?>">
+                    <label for="password" class="w3-small w3-left">password</label>
+                    <?php if (isset($data['errors']['password'])) : ?>
+                        <?php foreach ($data['errors']['password'] as $error) : ?>
+                            <p class="w3-text-red w3-small"><?php echo $error; ?></p>
+                        <?php endforeach ?>
+                    <?php endif; ?>
+                    <br>
 
-                        </div>
-                        <div class="field">
-                            <label class="label">* Contraseña</label>
-                            <div class="control">
-                                <input required type="password" name="password" class="input has-text-centered <?php if (isset($data['errors']['password'])) {
-                                                                                                                    echo 'is-danger';
-                                                                                                                } ?>">
-                            </div>
-                        </div>
+                    <!-- Boton SUBMMIT -->
+                    <div class="w3-margin-top">
+                        <button type="submit" class="w3-btn w3-hover-indigo w3-round-xxlarge w3-blue w3-block">Entrar</button>
+                    </div>
 
-                        <?php if (isset($data['errors']['password'])) : ?>
-                            <?php foreach ($data['errors']['password'] as $error) : ?>
-                                <p class="help is-danger"><?php echo $error; ?></p>
-                            <?php endforeach ?>
-                        <?php endif; ?>
 
-                        <br>
-                        <div class="control">
-                            <button class="button is-link" type="submit">Entrar</button>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
+
+
         </div>
     </div>
-
-</div>
+</section>

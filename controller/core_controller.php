@@ -13,7 +13,7 @@ class core_controller
    public function __construct()
    {
       $this->setControllerName();
-      $this->addCss('bulma.min');
+      $this->addCss(DEFAULT_CSS);
       $this->addScript('functions');
       $this->setTemplate();
       $this->setView($this->controller_name);

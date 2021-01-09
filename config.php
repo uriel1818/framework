@@ -1,10 +1,10 @@
 <?php
 
 /**Estructura de directorios */
-define('NOMBRE_SITIO', 'BrandiSeguros');
+define('NOMBRE_SITIO', 'UrielGalarza');
 define('SLOGAN', 'Más seguro que nunca');
 define('ROOT', './');
-define('ROOTURL','localhost.BrandiSeguros/');
+define('ROOTURL','localhost.UrielGalarza/');
 define('MODEL', ROOT . 'model/');
 define('VIEW', ROOT. 'view/');
 define('CONTROLLER', ROOT . 'controller/');
@@ -19,7 +19,8 @@ define('HTML_COMPONENTS',SRC.'html_components/');
 /** Variables default */
 define('DEFAULT_CONTROLLER','index');
 define('DEFAULT_ACTION','index');
-define('DEFAULT_TEMPLATE','default');
+define('DEFAULT_TEMPLATE','w3css');
+define('DEFAULT_CSS','w3');
 
 
 /** URLeS fijas */

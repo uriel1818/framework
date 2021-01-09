@@ -11,7 +11,6 @@ class login_controller extends core_controller
 {
     public function __construct()
     {
-        $this->validateAction();
         parent::__construct();
         $this->loginCheck = false;
         $this->addModel('usuarios');
@@ -27,7 +26,7 @@ class login_controller extends core_controller
         $this->data['errors'] = $helper->validate();
     }
 
-    private function validateUser()
+    public function login()
     {
         if (!isset($this->data['errors'])) {
             $this->models['usuarios']->setNombre($_POST['nombre']);
@@ -42,32 +41,20 @@ class login_controller extends core_controller
                 $this->data['errors']['usuario'] = 'Datos incorrectos, probá nuevamente o avisame y lo vemos. Gracias!';
             }
         }
+        $this->run();
     }
 
-    private function logout()
+    public function logout()
     {
         if ($_GET['a'] == 'logout') {
             session_unset();
             session_destroy();
             $this->irA('login');
-            exit;
-        }
-    }
-    private function validateAction()
-    {
-        if (isset($_GET['a'])) {
-            $this->logout();
-        }
-
-        if (isset($_SESSION['usuario'])) {
-            $this->irA(DEFAULT_CONTROLLER);
-            exit;
         }
     }
 
     public function index()
     {
-        $this->validateUser();
         $this->run();
     }
 }
