@@ -1,10 +1,10 @@
 <?php
 
 /**Estructura de directorios */
-define('NOMBRE_SITIO', 'UrielGalarza');
+define('NOMBRE_SITIO', 'BrandiSeguros');
 define('SLOGAN', 'Más seguro que nunca');
 define('ROOT', './');
-define('ROOTURL','localhost.UrielGalarza/');
+define('ROOTURL','localhost.BrandiSeguros/');
 define('MODEL', ROOT . 'model/');
 define('VIEW', ROOT. 'view/');
 define('CONTROLLER', ROOT . 'controller/');
@@ -27,7 +27,7 @@ define('DEFAULT_CSS','w3');
 define('LOGIN','index.php?c=login');
 
 
-/** Extensiones de modelos, vistas y controladores ej: _model.php _view.php _controller.php*/
+/** Extensiones de modelos, vistas, controladores, etc. ej: _model.php _view.php _controller.php*/
 define('MODEL_EXT','_model.php');
 define('VIEW_EXT','_view.php');
 define('CONTROLLER_EXT','_controller.php');

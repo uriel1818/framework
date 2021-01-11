@@ -22,7 +22,7 @@
                     <input required type="text" name="nombre" id="nombre" class="w3-input <?php if (isset($data['errors']['nombre'])) {
                                                                                                 echo 'w3-border-red w3-border';
                                                                                             } ?>">
-                    <label for="nombre" class="w3-small w3-left">Nombre</label>
+                    <label for="nombre" class="w3-small w3-left">Usuario</label>
                     <?php if (isset($data['errors']['nombre'])) : ?>
                         <?php foreach ($data['errors']['nombre'] as $error) : ?>
                             <p class="w3-text-red w3-small"><?php echo $error; ?></p>
@@ -42,8 +42,8 @@
                     <br>
 
                     <!-- Boton SUBMMIT -->
-                    <div class="w3-margin-top">
-                        <button type="submit" class="w3-btn w3-hover-indigo w3-round-xxlarge w3-blue w3-block">Entrar</button>
+                    <div class="w3-margin-top" >
+                        <button type="submit" class="w3-btn w3-hover-indigo w3-round-xxlarge w3-blue w3-block" style="outline: none;">Entrar</button>
                     </div>
 
 

@@ -18,9 +18,6 @@ function showHideMenu() {
  * Funciones de w3css
  */
 
-function w3_open() {
-  document.getElementById("sidebar").style.display = "block";
-}
-function w3_close() {
-  document.getElementById("sidebar").style.display = "none";
+function sidebar() {
+  
 }
