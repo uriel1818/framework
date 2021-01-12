@@ -1,15 +1,14 @@
-/**
- * Funciones de w3css
- */
-
-let sidebar = {    
-    s: document.getElementById('sidebar'),
-    show: function () {
-        if(this.s.style.display == "none"){
-            alert('Abrir');
+let sidebar = {
+    openClose: function () {
+        let element = document.getElementById("sidebar");
+        let status = element.style.display;
+        if(status == "block"){
+            element.style.display = "none";
+        }else{
+            element.style.display = "block";
         }
-        else{
-            alert("Cerrar");
-        }
-    }
+        console.log("status");
+    },
 }
+
+

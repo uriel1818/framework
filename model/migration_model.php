@@ -54,7 +54,9 @@ class migration_model extends core_model
         "
             CREATE TABLE IF NOT EXISTS terceros(
                 id integer primary key,
-                nombre varchar(100) not null,
+                nombre varchar(100),
+                apellido varchar(100),
+                dni integer,
                 fk_terceros_tipo integer not null references terceros_tipo
             );
 
@@ -111,6 +113,7 @@ class migration_model extends core_model
         $query =
             "
             INSERT INTO usuarios (nombre,password) VALUES ('uriel','teclado');
+            INSERT INTO usuarios (nombre,password) VALUES ('maximiliano','belgrano');
             INSERT INTO menus (nombre,controller) VALUES ('Producto','productos');
             INSERT INTO menus_ubicaciones(nombre) VALUES ('navbar');
             INSERT INTO menus_ubicaciones(nombre) VALUES ('lateral');

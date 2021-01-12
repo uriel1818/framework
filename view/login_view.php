@@ -18,7 +18,7 @@
             <div class="w3-container w3-padding-16 w3-card w3-round-large">
                 <form action="index.php?c=login&a=login" method="post">
 
-                    <!-- Defino el INPUT NOMBRE con las validaciones de errores -->
+                    <!-- INPUT NOMBRE con las validaciones de errores -->
                     <input required type="text" name="nombre" id="nombre" class="w3-input <?php if (isset($data['errors']['nombre'])) {
                                                                                                 echo 'w3-border-red w3-border';
                                                                                             } ?>">
@@ -29,7 +29,7 @@
                         <?php endforeach ?>
                     <?php endif; ?>
 
-                    <!-- Defino el INPUT PASSWORD con las validaciones de errores -->
+                    <!-- INPUT PASSWORD con las validaciones de errores -->
                     <input required type="password" name="password" id="password" class="w3-input <?php if (isset($data['errors']['password'])) {
                                                                                                         echo 'w3-border-red w3-border';
                                                                                                     } ?>">

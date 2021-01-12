@@ -2,7 +2,7 @@
     <div class="hero-body">
         <div class="container">
             <h1 class="title">
-                Bienvenido
+                Bienvenido <?php echo ucfirst($_SESSION['usuario']['nombre']); ?>
             </h1>
         </div>
     </div>
