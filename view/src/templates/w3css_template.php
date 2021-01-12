@@ -26,7 +26,7 @@
     <!-- NavBar superior fija -->
     <div class="w3-top" style="z-index:2;">
     <div class="w3-bar w3-white w3-card ">
-    <div id="menu_icon" class=" w3-btn w3-bar-item w3-rightbar w3-border-blue" onclick="w3_sidebar()">&#8801</div>
+    <div id="menu_icon" class=" w3-btn w3-bar-item w3-rightbar w3-border-blue" onclick="sidebar.show()">&#8801</div>
     <a href="index.php" class="w3-bar-item w3-button w3-animate-top">Brandi Seguros</a>
     <a href="index.php?c=login&a=logout" class="w3-right w3-bar-item w3-button w3-leftbar w3-border-blue">Salir &#10095; </a>
     </div>
@@ -34,7 +34,7 @@
 
 
     <!-- Barra lateral -->
-    <div id="sidebar" class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-black" style="width:200px;padding-top:50px; display:none; outline:none" tabindex="1" onfocusout="w3_sidebar()">
+    <div id="sidebar" class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-black" style="width:200px;padding-top:50px; display:none; outline:none" tabindex="1">
         <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 1</a>
         <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 2</a>
         <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 3</a>
