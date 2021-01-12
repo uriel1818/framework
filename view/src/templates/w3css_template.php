@@ -26,16 +26,16 @@
     <!-- NavBar superior fija -->
     <div class="w3-top" style="z-index:2;">
     <div class="w3-bar w3-white w3-card ">
-    <div id="menu_icon" class=" w3-btn w3-bar-item w3-rightbar w3-border-blue" onclick="w3_sidebar()">&#8801</div>
-    <a href="index.php" class="w3-bar-item w3-button w3-animate-top">Brandi Seguros</a>
-    <a href="index.php?c=login&a=logout" class="w3-right w3-bar-item w3-button w3-leftbar w3-border-blue">Salir &#10095; </a>
+    <div id="menu_icon" class=" w3-btn w3-bar-item w3-rightbar w3-hide-large" onclick="sidebar.openClose()">&#8801</div>
+    <a href="index.php" class="w3-bar-item w3-button w3-animate-top"><?php echo NOMBRE_SITIO; ?></a>
+    <a href="index.php?c=login&a=logout" class="w3-right w3-bar-item w3-button w3-leftbar">Salir &#10095; </a>
     </div>
     </div>
 
 
     <!-- Barra lateral -->
-    <div id="sidebar" class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-black" style="width:200px;padding-top:50px; display:none; outline:none" tabindex="1" onfocusout="w3_sidebar()">
-        <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 1</a>
+    <div id="sidebar" class=" w3-bar-block w3-card w3-animate-left w3-black w3-sidebar w3-collapse" style="width:200px;padding-top:50px; outline:none" tabindex="1">
+        <a href="index.php?c=clientes&a=index" class="w3-bar-item w3-button w3-hover-blue ">Clientes</a>
         <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 2</a>
         <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 3</a>
         <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 4</a>
@@ -43,9 +43,15 @@
    
 
    <!-- Contenido principal -->
+   <div class="w3-row">
+   <div class="w3-col w3-hide-medium w3-hide-small" style="width:200px">""</div>
+   <div class="w3-rest">
    <div class="w3-container" style="padding-top:40px">
    <?php require_once($data['view']); ?>
    </div>
+   </div>
+   </div>
+   
 
     <!-- Cargo los Scripts -->
     <?php

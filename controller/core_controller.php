@@ -14,6 +14,7 @@ class core_controller
    {
       $this->setControllerName();
       $this->addCss(DEFAULT_CSS);
+      $this->addCss('mio');
       $this->addScript('functions');
       $this->setTemplate();
       $this->setView($this->controller_name);
