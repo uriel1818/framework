@@ -19,10 +19,10 @@
                 <form action="index.php?c=login&a=login" method="post">
 
                     <!-- INPUT NOMBRE con las validaciones de errores -->
+                    <label for="nombre" class="w3-small w3-left">Usuario</label>
                     <input required type="text" name="nombre" id="nombre" class="w3-input <?php if (isset($data['errors']['nombre'])) {
                                                                                                 echo 'w3-border-red w3-border';
                                                                                             } ?>">
-                    <label for="nombre" class="w3-small w3-left">Usuario</label>
                     <?php if (isset($data['errors']['nombre'])) : ?>
                         <?php foreach ($data['errors']['nombre'] as $error) : ?>
                             <p class="w3-text-red w3-small"><?php echo $error; ?></p>
@@ -30,10 +30,10 @@
                     <?php endif; ?>
 
                     <!-- INPUT PASSWORD con las validaciones de errores -->
+                    <label for="password" class="w3-small w3-left">password</label>
                     <input required type="password" name="password" id="password" class="w3-input <?php if (isset($data['errors']['password'])) {
                                                                                                         echo 'w3-border-red w3-border';
                                                                                                     } ?>">
-                    <label for="password" class="w3-small w3-left">password</label>
                     <?php if (isset($data['errors']['password'])) : ?>
                         <?php foreach ($data['errors']['password'] as $error) : ?>
                             <p class="w3-text-red w3-small"><?php echo $error; ?></p>

@@ -5,6 +5,11 @@
  * Cada validacion posible es una funcion.
  * Se debe cargar el array $validations con el nombre de las funciones (validaciones) que tenga que cumplir cada "input"
  */
+/**
+ * Devuelve el valor $errors que es un array o un null
+ * @return array or null
+ * 
+ */
 namespace app\helpers;
 
 class form_validations_helper

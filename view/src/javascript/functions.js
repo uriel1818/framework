@@ -7,7 +7,7 @@ let sidebar = {
         }else{
             element.style.display = "block";
         }
-        console.log("status");
+        //console.log("status");
     },
 }
 

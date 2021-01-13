@@ -14,7 +14,6 @@ class core_controller
    {
       $this->setControllerName();
       $this->addCss(DEFAULT_CSS);
-      $this->addCss('mio');
       $this->addScript('functions');
       $this->setTemplate();
       $this->setView($this->controller_name);
@@ -38,6 +37,7 @@ class core_controller
          $this->controller_name = $_GET['c'];
       }
    }
+   
    protected function addModel($model)
    {
       require_once MODEL . $model . MODEL_EXT;

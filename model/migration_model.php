@@ -68,6 +68,14 @@ class migration_model extends core_model
             CREATE TABLE IF NOT EXISTS terceros_telefonos(
                 id integer primary key,
                 numero integer,
+                predeterminado boolean,
+                fk_terceros integer not null references tereros
+            );
+            
+            CREATE TABLE IF NOT EXISTS terceros_emails(
+                id integer primary key,
+                email varchar(100),
+                predeterminado boolean,
                 fk_terceros integer not null references tereros
             );
 
@@ -77,6 +85,7 @@ class migration_model extends core_model
                 barrio varchar(100),
                 localidad varchar(100),
                 provincia varchar(100),
+                predeterminada boolean,
                 fk_terceros integer not null references tereros
             );
 
