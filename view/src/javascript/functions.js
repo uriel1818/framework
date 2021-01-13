@@ -10,5 +10,3 @@ let sidebar = {
         //console.log("status");
     },
 }
-
-
