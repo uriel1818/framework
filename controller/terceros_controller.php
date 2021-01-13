@@ -1,20 +1,29 @@
 <?php
+<<<<<<< HEAD
 
 namespace app\controller;
 
 require_once 'core' . CONTROLLER_EXT;
 
+=======
+namespace app\controller;
+require_once 'core'.CONTROLLER_EXT;
+>>>>>>> 6729553f660dcaf35167f76cc5065fbdcf50ebf8
 use app\controller\core_controller;
 
 class terceros_controller extends core_controller
 {
+<<<<<<< HEAD
     private $terceros;
     private $terceros_tipo;
 
+=======
+>>>>>>> 6729553f660dcaf35167f76cc5065fbdcf50ebf8
     public function __construct()
     {
         parent::__construct();
         $this->setTitle('Asegurados');
+<<<<<<< HEAD
         $this->terceros = $this->addModel('terceros');
         $this->terceros_tipo = $this->addModel('terceros_tipo');        
     }
@@ -49,4 +58,11 @@ class terceros_controller extends core_controller
         $this->data['tercero_tipo'] = $this->terceros_tipo->getAll();
         $this->run();
     }
+=======
+        $this->addModel('terceros');
+    }
+
+    
+
+>>>>>>> 6729553f660dcaf35167f76cc5065fbdcf50ebf8
 }

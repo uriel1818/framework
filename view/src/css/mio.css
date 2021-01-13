@@ -1,3 +1,28 @@
+/** Elimina la barra de navegacion de chrome 
 ::-webkit-scrollbar{
+<<<<<<< HEAD
 display: none;
+=======
+
+}
+**/
+
+
+/**
+*
+*Elimino flechas para aumentar en el input tipo numero
+*
+*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+>>>>>>> 6729553f660dcaf35167f76cc5065fbdcf50ebf8
 }
