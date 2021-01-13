@@ -57,6 +57,7 @@ class migration_model extends core_model
                 nombre varchar(100),
                 apellido varchar(100),
                 dni integer,
+                email varchar(100),
                 fk_terceros_tipo integer not null references terceros_tipo
             );
 

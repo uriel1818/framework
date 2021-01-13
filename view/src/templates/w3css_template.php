@@ -20,8 +20,7 @@
 
 </head>
 
-<body class="w3-light-grey">
-
+<body class="w3-indigo" style="min-width:285px; min-height:400px">
 
     <!-- NavBar superior fija -->
     <div class="w3-top" style="z-index:2;">
@@ -32,15 +31,11 @@
     </div>
     </div>
 
-
     <!-- Barra lateral -->
-    <div id="sidebar" class=" w3-bar-block w3-card w3-animate-left w3-black w3-sidebar w3-collapse" style="width:200px;padding-top:50px; outline:none" tabindex="1">
-        <a href="index.php?c=clientes&a=index" class="w3-bar-item w3-button w3-hover-blue ">Clientes</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-blue ">Menu 4</a>
+    <div id="sidebar" class=" w3-bar-block w3-card w3-black w3-sidebar w3-collapse" style="width:200px;padding-top:50px; outline:none" tabindex="1">
+        <a href="index.php?c=index" class="w3-bar-item w3-button w3-hover-indigo ">Inicio</a>
+        <a href="index.php?c=terceros&a=index" class="w3-bar-item w3-button w3-hover-indigo ">Asegurados</a>
     </div>
-   
 
    <!-- Contenido principal -->
    <div class="w3-row">
@@ -52,14 +47,12 @@
    </div>
    </div>
    
-
     <!-- Cargo los Scripts -->
     <?php
     foreach ($data['script'] as $value) {
         echo '<script type="text/javascript" src="' . $value . '"></script>';
     }
     ?>
-
 
 </body>
 
