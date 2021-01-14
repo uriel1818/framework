@@ -37,7 +37,7 @@ class core_controller
          $this->controller_name = $_GET['c'];
       }
    }
-   
+
    protected function addModel($model)
    {
       require_once MODEL . $model . MODEL_EXT;
@@ -102,6 +102,23 @@ class core_controller
       return $url;
    }
 
+
+   /**
+    * Recibe un string con el objeto modelo, lleno ese modelo con datos del formulario.
+    * Los "name" de los "input" de los formularios deben ser_
+    * exactamente iguales a las propiedades del modelo para que funcione.
+    */
+   protected function fillObjet($objet)
+   {
+      $objProperties = $objet->getProperties();
+
+      foreach ($objProperties as $key => $value) {
+         $objet->$key = isset($_POST[$key]) ? '\''.$_POST[$key].'\'' : NULL ;
+      }
+
+   }
+
+   
    protected function run()
    {
       $this->loginCheck();

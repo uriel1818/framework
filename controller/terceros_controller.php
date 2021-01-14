@@ -8,13 +8,22 @@ use app\controller\core_controller;
 
 class terceros_controller extends core_controller
 {
+
     private $terceros;
-    private $terceros_tipo;
 
     public function __construct()
     {
         parent::__construct();
         $this->setTitle('Asegurados');
-        $this->addModel('terceros');
+        $this->terceros = $this->addModel('terceros');
     }
+
+    public function save()
+    {
+        $this->fillObjet($this->terceros);
+        
+        $this->terceros->insert();
+        
+    }
+
 }

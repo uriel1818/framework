@@ -22,7 +22,6 @@ class core_model
         }
     }
 
-
     protected function setTable($table)
     {
         $this->table = $table;
@@ -47,39 +46,67 @@ class core_model
     }
 
     /**
-     * devuelvo los atributos y valores de la clase actual
+     *  devuelvo los atributos y valores de la clase actual
+     * menos los que se especifican en -> $array_unset
+     *  @array
      */
-    protected function getVars()
+    public function getProperties($array_unset = NULL)
     {
-        $attributes = get_object_vars($this);
-        return $attributes;
+        $array_unset[] = 'db';
+        $array_unset[] = 'table';
+        $properties = get_object_vars($this);
+
+        if ($array_unset) {
+            foreach ($array_unset as $key => $value) {
+                unset($properties[$value]);
+            }
+        }
+
+        return $properties;
     }
 
     /**
      * devuelvo string separado por coma de los atributos de la clase actual
+     *  @string
      */
-    protected function getKeys()
+    private function propertiesToString($array_unset)
     {
-        $keys = implode(',',array_keys($this->getVars()));
+
+        $keys = implode(',', array_keys($this->getProperties($array_unset)));
         return $keys;
     }
 
     /**
      *  obtengo string separado por coma 
      *  con los valores de los atributos de la clase actual
-    */
-    protected function getValues()
-    {    
-        $values = implode(',',array_values($this->getVars()));
+     *  @string
+     */
+    private function valuesToString($array_unset)
+    {
+        $values = implode(',', array_values($this->getProperties($array_unset)));
+
         return $values;
     }
 
+    /**
+     * Inserto los datos de la clase actual en base de datos
+     */
     public function insert()
     {
-        $keys = $this->getKeys();
-        $values = $this->getValues();
-
-        $obj = $this->db->query('INSERT INTO '. $this->table . ' ('. $keys .') values ('. $values .') ');
+        $keys = $this->propertiesToString(array('id'));
+        $values = $this->valuesToString(array('id'));
+echo 'INSERT INTO ' . $this->table . ' (' . $keys . ') values (' . $values . '); ';
+        $obj = $this->db->query('INSERT INTO ' . $this->table . ' (' . $keys . ') values (' . $values . '); ');
+        
+        var_dump($obj);
+        
         return $obj;
-    }    
+
+    }
+
+    public function update()
+    {
+        echo "UPDATE CONTROLLER";
+        //$query = 'UPDATE ' . $this->getKeys() . '';
+    }
 }
