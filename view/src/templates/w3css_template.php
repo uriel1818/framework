@@ -24,18 +24,18 @@
 
     <!-- NavBar superior fija -->
     <div class="w3-top" style="z-index:2;">
-    <div class="w3-bar w3-white w3-card ">
+    <div class="w3-bar w3-text-light-grey " style="background-color:#333;">
 
-    <div id="menu_icon" class=" w3-btn w3-bar-item w3-rightbar w3-hide-large" onclick="sidebar.openClose()">&#8801</div>
+    <div id="menu_button" class=" w3-btn w3-bar-item w3-rightbar w3-hide-large">&#8801</div>
     <a href="index.php" class="w3-bar-item w3-button w3-animate-top"><?php echo NOMBRE_SITIO; ?></a>
     <a href="index.php?c=login&a=logout" class="w3-right w3-bar-item w3-button w3-leftbar">Salir &#10095; </a>
     </div>
     </div>
 
     <!-- Barra lateral -->
-    <div id="sidebar" class=" w3-bar-block w3-card w3-black w3-sidebar w3-collapse" style="width:200px;padding-top:50px; outline:none" tabindex="1">
-        <a href="index.php?c=index" class="w3-bar-item w3-button w3-hover-indigo ">Inicio</a>
-        <a href="index.php?c=terceros&a=index" class="w3-bar-item w3-button w3-hover-indigo ">Asegurados</a>
+    <div id="sidebar" class=" w3-bar-block w3-card w3-text-light-grey w3-sidebar w3-collapse" style="width:200px;padding-top:50px; background-color:#333;">
+        <a href="index.php?c=index" class="w3-bar-item w3-button w3-hover-blue ">Inicio</a>
+        <a href="index.php?c=terceros&a=index" class="w3-bar-item w3-button w3-hover-blue ">Asegurados</a>
     </div>
 
    <!-- Contenido principal -->
@@ -51,7 +51,7 @@
     <!-- Cargo los Scripts -->
     <?php
     foreach ($data['script'] as $value) {
-        echo '<script type="text/javascript" src="' . $value . '"></script>';
+        echo '<script type="module" defer src="' . $value . '"></script>';
     }
     ?>
 

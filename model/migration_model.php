@@ -24,22 +24,15 @@ class migration_model extends core_model
             nombre VARCHAR(50) NOT NULL,
             password VARCHAR(50) NOT NULL
             );
-
-            CREATE TABLE IF NOT EXISTS menus(
+            CREATE TABLE IF NOT EXISTS terceros(
                 id integer primary key,
-                nombre varchar(50) not null,
-                controller varchar(100) default NULL,
-                action varchar(100) default NULL,
-                params varchar(100) default NULL,
-                padre integer default 0,
-                fk_menus_ubicaciones INTEGER DEFAULT 1 REFERENCES menus_ubicaciones
+                nombre varchar(100),
+                apellido varchar(100),
+                dni integer,
+                email varchar(100),
+                telefono integer,
+                comentarios text
             );
-            
-            CREATE TABLE IF NOT EXISTS menus_ubicaciones(
-                id integer primary key,
-                nombre varchar(100)
-            );
-            
             ";
             
             try {
@@ -77,8 +70,6 @@ class migration_model extends core_model
         $query =
             "
             DROP TABLE IF EXISTS usuarios;
-            DROP TABLE IF EXISTS menus;
-            DROP TABLE IF EXISTS menus_ubicaciones;
             DROP TABLE IF EXISTS terceros;
             ";
 
@@ -95,11 +86,7 @@ class migration_model extends core_model
             "
             INSERT INTO usuarios (nombre,password) VALUES ('uriel','teclado');
             INSERT INTO usuarios (nombre,password) VALUES ('maximiliano','belgrano');
-            INSERT INTO menus (nombre,controller) VALUES ('Producto','productos');
-            INSERT INTO menus_ubicaciones(nombre) VALUES ('navbar');
-            INSERT INTO menus_ubicaciones(nombre) VALUES ('lateral');
-            INSERT INTO terceros_tipo(nombre) VALUES ('persona');
-            INSERT INTO terceros_tipo(nombre) VALUES ('empresa');
+            INSERT INTO terceros (nombre,apellido,dni,email,telefono,comentarios) VALUES ('maximiliano','ballistreri','34646565','maximiliano@email.com','4765542','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel accumsan mi. Donec efficitur libero ut odio dictum, ac malesuada arcu pellentesque. Duis pharetra est dolor, eget pharetra lectus malesuada nec. Suspendisse lobortis nibh in luctus ultrices. Sed facilisis urna ultricies vehicula suscipit. Morbi eros nisi, venenatis ac ex nec, maximus vestibulum sem. Donec congue enim neque, id commodo urna tincidunt id. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ac massa magna.');
             ";
 
         try {

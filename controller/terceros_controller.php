@@ -16,14 +16,16 @@ class terceros_controller extends core_controller
         parent::__construct();
         $this->setTitle('Asegurados');
         $this->terceros = $this->addModel('terceros');
+        $this->loadHelper('form_validations');
     }
 
     public function save()
-    {
+    {   
+        
+         
         $this->fillObjet($this->terceros);
         
         $this->terceros->insert();
-        
     }
 
 }

@@ -9,12 +9,13 @@ class core_controller
    protected $loginCheck = true;
    protected $template;
    protected $controller_name;
+   protected $helpers = array();
 
    public function __construct()
    {
       $this->setControllerName();
       $this->addCss(DEFAULT_CSS);
-      $this->addScript('functions');
+      $this->addScript('app');
       $this->setTemplate();
       $this->setView($this->controller_name);
       $this->setTitle($this->controller_name);
@@ -26,6 +27,7 @@ class core_controller
       require_once HELPERS . $helperName . HELPERS_EXT;
       $nameSpace = 'app\\helpers\\' . $helperName . '_helper';
       $helper = new $nameSpace;
+      $this->helpers[] =  $helper;
       return $helper;
    }
 
@@ -104,9 +106,8 @@ class core_controller
 
 
    /**
-    * Recibe un string con el objeto modelo, lleno ese modelo con datos del formulario.
-    * Los "name" de los "input" de los formularios deben ser_
-    * exactamente iguales a las propiedades del modelo para que funcione.
+    * Completa el modelo con los datos del $_POST
+    *(los inputs tienen que tener el mismo nombre que en el modelo)
     */
    protected function fillObjet($objet)
    {
