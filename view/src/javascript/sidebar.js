@@ -1,4 +1,4 @@
-export default class Sidebar {
+class Sidebar {
     constructor(sbar, btn) {
         this.element = document.getElementById(sbar);
         this.button = document.getElementById(btn);
@@ -6,14 +6,32 @@ export default class Sidebar {
     }
 
     /**
-     * Abro o cierro el sidebar
+     * Abro el sidebar
+     */
+    open(){
+        this.element.style.display = "block";
+        this.button.innerHTML = "&#88;";
+        this.button.style.backgroundColor = "red"
+    }
+
+    /**
+     * Cierro el sidebar
+     */
+    close(){
+        this.element.style.display = "none";
+        this.button.innerHTML = "&#8801";
+        this.button.style.backgroundColor = ""
+    }
+    
+    /**
+     * Verifica si está abierto o cerrado
      */
     openClose() {
         if (!this.element.style.display || this.element.style.display == "none") {
-            this.element.style.display = "block";
+            this.open();
         }
         else {
-            this.element.style.display = "none";
+            this.close();
         }
     }
 
@@ -21,6 +39,12 @@ export default class Sidebar {
      * Agrego los eventos para el sidebar
      */
     addListeners() {
-        this.button.addEventListener("click", () => { this.openClose(); },false);
+        
+        this.button.addEventListener("click", ()=>this.openClose() ,false);
     }
 }
+
+
+/** Exporto una instancia de la clase */
+let sb = new Sidebar('sidebar','menu_button');
+export default {sb};

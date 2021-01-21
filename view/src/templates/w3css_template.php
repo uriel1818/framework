@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="w3-indigo" style="min-width:285px; min-height:400px">
+<body class="w3-light-grey" style="min-width:285px; min-height:400px">
 
     <!-- NavBar superior fija -->
     <div class="w3-top" style="z-index:2;">
