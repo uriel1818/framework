@@ -5,6 +5,7 @@ namespace app\controller;
 require_once 'core' . CONTROLLER_EXT;
 
 use app\controller\core_controller;
+use app\model\terceros_model;
 
 class terceros_controller extends core_controller
 {
@@ -21,11 +22,14 @@ class terceros_controller extends core_controller
 
     public function save()
     {   
-        
          
         $this->fillObjet($this->terceros);
         
         $this->terceros->insert();
+    }
+
+    public function test(){
+        var_dump($this->terceros);
     }
 
 }

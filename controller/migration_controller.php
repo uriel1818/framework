@@ -25,8 +25,14 @@ class migration_controller extends core_controller
         /**creo las tablas propias del programita que necesito*/
         $this->data['errors']['createTables'] = $this->models['migration']->createTables();
 
-        /**completo las tablas con datos fijos o de prueba*/
+        /**completo las tablas con datos fijos y/o datos de prueba*/
         $this->data['errors']['fillTablesDemo'] = $this->models['migration']->fillTablesDemo();
+    }
+
+    public function makeModel($model){
+        if(!file_exists(VIEW.$model.VIEW_EXT)){
+            
+        }
     }
 
     public function index()

@@ -47,8 +47,7 @@
             <!-- Input comentarios -->
             <div class="w3-half">
                 <label for="comentarios" class="w3-small">Comentarios</label>
-                <textarea id="comentarios" name="comentarios" rows="4" cols="50" class="w3-input" style="resize: none;">
-                </textarea>
+                <textarea id="comentarios" name="comentarios" rows="4" cols="50" class="w3-input" style="resize: none;"></textarea>
             </div>
 
             <!-- Submit -->

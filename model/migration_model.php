@@ -24,6 +24,7 @@ class migration_model extends core_model
             nombre VARCHAR(50) NOT NULL,
             password VARCHAR(50) NOT NULL
             );
+
             CREATE TABLE IF NOT EXISTS terceros(
                 id integer primary key,
                 nombre varchar(100),
@@ -33,6 +34,31 @@ class migration_model extends core_model
                 telefono integer,
                 comentarios text
             );
+
+            CREATE TABLE IF NOT EXISTS CRUD_tablas(
+                id integer primary key,
+                nombre varchar(100)
+            );
+
+            CREATE TABLE IF NOT EXISTS CRUD_columnas(
+                id integer primary key,
+                nombre varchar(100),
+                fk_CRUD_tablas integer not null REFERENCES CRUD_tablas(id),
+                fk_CRUD_tipos_inputs integer not null REFERENCES CRUD_tipos_inputs(id),
+                
+            );
+
+            CREATE TABLE IF NOT EXISTS CRUD_tipos_inputs(
+                id integer primary key,
+                nombre varchar(100),
+                validaciones text
+            );
+
+            CREATE TABLE IF NOT EXISTS CRUD_tipos_columnas(
+                id integer primary key,
+                nombre varchar(100),
+            );
+
             ";
             
             try {
@@ -46,16 +72,8 @@ class migration_model extends core_model
         {
             $query = 
             "
-            CREATE TABLE IF NOT EXISTS terceros(
-                id integer primary key,
-                nombre varchar(100),
-                apellido varchar(100),
-                dni integer,
-                email varchar(100),
-                telefono integer,
-                comentarios text
-            );
-        ";
+            
+            ";
         try {
             $this->db->exec($query);
            

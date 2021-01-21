@@ -1,7 +1,10 @@
-export default class Sidebar {
+ class Sidebar {
+
+    
+
     constructor(sbar, btn) {
         this.element = document.getElementById(sbar);
-        this.button = document.getElementById(btn);
+        this.button  = document.getElementById(btn);
         this.addListeners();
     }
 
@@ -21,6 +24,14 @@ export default class Sidebar {
      * Agrego los eventos para el sidebar
      */
     addListeners() {
-        this.button.addEventListener("click", () => { this.openClose(); },false);
+        let openClose;
+        this.button.addEventListener("click",  openClose = this.openClose.bind(this)  ,false); 
+        
+
     }
 }
+
+
+let sb = new Sidebar('sidebar','menu_button');
+
+export default {sb};
