@@ -1,11 +1,5 @@
-<<<<<<< HEAD
- class Sidebar {
 
-    
-
-=======
 class Sidebar {
->>>>>>> 561fd4034bd81ad513729f13407e622383da09c5
     constructor(sbar, btn) {
         this.element = document.getElementById(sbar);
         this.button  = document.getElementById(btn);
@@ -46,24 +40,13 @@ class Sidebar {
      * Agrego los eventos para el sidebar
      */
     addListeners() {
-<<<<<<< HEAD
         let openClose;
         this.button.addEventListener("click",  openClose = this.openClose.bind(this)  ,false); 
-        
-
-=======
-        
-        this.button.addEventListener("click", ()=>this.openClose() ,false);
->>>>>>> 561fd4034bd81ad513729f13407e622383da09c5
     }
 }
 
 
-<<<<<<< HEAD
-let sb = new Sidebar('sidebar','menu_button');
 
-=======
 /** Exporto una instancia de la clase */
 let sb = new Sidebar('sidebar','menu_button');
->>>>>>> 561fd4034bd81ad513729f13407e622383da09c5
 export default {sb};
