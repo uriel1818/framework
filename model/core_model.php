@@ -33,7 +33,7 @@ class core_model
      */
     public function getAll()
     {
-        $obj = $this->db->query('SELECT * FROM ' . $this->table);
+        $obj = $this->db->query('SELECT * FROM ' . $this->table,PDO::FETCH_OBJ);
         return $obj->fetchAll();
     }
 
@@ -67,63 +67,60 @@ class core_model
         $array_unset[] = 'table';
         $properties = get_object_vars($this);
 
-        if ($array_unset) {
             foreach ($array_unset as $key => $value) {
                 unset($properties[$value]);
             }
-        }
-
+        
         return $properties;
     }
 
-    /**
-     * devuelvo string separado por coma de los atributos de la clase actual
-     *  @return string
-     */
-    private function propertiesToString($array_unset)
-    {
-
-        $keys = implode(',', array_keys($this->getProperties($array_unset)));
-        return $keys;
-    }
-
-    /**
-     *  obtengo string separado por coma 
-     *  con los valores de los atributos de la clase actual
-     *  @return string
-     */
-    private function valuesToString($array_unset)
-    {
-        $values = implode(',', array_values($this->getProperties($array_unset)));
-
-        return $values;
-    }
 
     /**
      * Inserto los datos de la clase actual en base de datos
      * @return objet
      */
-    public function insert()
+    public function insert($keys,$values)
     {
-        $keys = $this->propertiesToString(array('id'));
-        $values = $this->valuesToString(array('id'));
-        echo 'INSERT INTO ' . $this->table . ' (' . $keys . ') values (' . $values . '); ';
-        $obj = $this->db->query('INSERT INTO ' . $this->table . ' (' . $keys . ') values (' . $values . '); ');
-
-        var_dump($obj);
-
-        return $obj;
+       $query = $this->db->exec("INSERT INTO {$this->table} ({$keys}) VALUES ({$values})") ;
+        var_dump($query);
+        return $query;
     }
 
+    /**
+     * Ejecuto la sentencia SQL y muestro el error o devuelvo el resultado de la consulta
+     * @objet
+     */
+    public function query($query)
+    {
+        try {
+          $obj =  $this->db->query($query);
+        } catch (Exception $e) {
+            echo "NO SE EJECUTÓ CORRECTAMETNTE LA SENTENCIA EN ==> core_model.php <==  <br>";
+            echo $e->getMessage();
+            die;
+        }
+        return $obj->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function update()
     {
         echo "UPDATE CONTROLLER";
-        //$query = 'UPDATE ' . $this->getKeys() . '';
     }
 
 
+    /**
+     * Get the value of db
+     */ 
+    public function getDb()
+    {
+        return $this->db;
+    }
 
-
-
+    /**
+     * Get the value of table
+     */ 
+    public function getTable()
+    {
+        return $this->table;
+    }
 }

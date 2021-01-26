@@ -25,16 +25,6 @@ class migration_model extends core_model
             password VARCHAR(50) NOT NULL
             );
 
-            CREATE TABLE IF NOT EXISTS terceros(
-                id integer primary key,
-                nombre varchar(100),
-                apellido varchar(100),
-                dni integer,
-                email varchar(100),
-                telefono integer,
-                comentarios text
-            );
-            
             CREATE TABLE IF NOT EXISTS CRUD_tablas(
                 id integer primary key,
                 nombre varchar(50)
@@ -43,10 +33,11 @@ class migration_model extends core_model
             CREATE TABLE IF NOT EXISTS CRUD_columnas(
                 id integer primary key,
                 nombre varchar(50),
-                is_forein boolean DEFAULT FALSE,
-                is_required boolean DEFAULT FALSE,
-                fk_CRUD_columnas_tipos integer NOT NULL,
-                fk_CRUD_inputs integer DEFAULT NULL
+                reference_to varchar(50) DEFAULT NULL,
+                required boolean DEFAULT 0,
+                fk_CRUD_columnas_tipos integer DEFAULT 4 REFERENCES CRUD_columnas_tipos,
+                fk_CRUD_tablas integer NOT NULL REFERENCES CRUD_tablas,
+                fk_CRUD_inputs integer DEFAULT 4 REFERENCES CRUD_inputs
             );
 
             CREATE TABLE IF NOT EXISTS CRUD_columnas_tipos(
@@ -57,12 +48,6 @@ class migration_model extends core_model
             CREATE TABLE IF NOT EXISTS CRUD_inputs(
                 id integer primary key,
                 nombre varchar(50)
-            );
-
-            CREATE TABLE IF NOT EXISTS CRUD_inputs_tipos(
-                id integer primary key,
-                nombre varchar(50)
->>>>>>> 561fd4034bd81ad513729f13407e622383da09c5
             );
 
             ";
@@ -98,7 +83,6 @@ class migration_model extends core_model
             DROP TABLE IF EXISTS CRUD_columnas;
             DROP TABLE IF EXISTS CRUD_columnas_tipos;
             DROP TABLE IF EXISTS CRUD_inputs;
-            DROP TABLE IF EXISTS CRUD_inputs_tipos;
             
             ";
 
@@ -115,28 +99,36 @@ class migration_model extends core_model
             "
             INSERT INTO usuarios (nombre,password) VALUES ('uriel','teclado');
             INSERT INTO usuarios (nombre,password) VALUES ('maximiliano','belgrano');
-            INSERT INTO terceros (nombre,apellido,dni,email,telefono,comentarios) VALUES ('maximiliano','ballistreri','34646565','maximiliano@email.com','4765542','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel accumsan mi. Donec efficitur libero ut odio dictum, ac malesuada arcu pellentesque. Duis pharetra est dolor, eget pharetra lectus malesuada nec. Suspendisse lobortis nibh in luctus ultrices. Sed facilisis urna ultricies vehicula suscipit. Morbi eros nisi, venenatis ac ex nec, maximus vestibulum sem. Donec congue enim neque, id commodo urna tincidunt id. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ac massa magna.');
-            INSERT INTO CRUD_tablas (nombre) VALUES ('terceros_2');
+           
             INSERT INTO CRUD_columnas_tipos (nombre) VALUES ('integer');
             INSERT INTO CRUD_columnas_tipos (nombre) VALUES ('decimal(5,2)');
             INSERT INTO CRUD_columnas_tipos (nombre) VALUES ('boolean');
             INSERT INTO CRUD_columnas_tipos (nombre) VALUES ('varchar(200)');
             INSERT INTO CRUD_columnas_tipos (nombre) VALUES ('varchar(100)');
             INSERT INTO CRUD_columnas_tipos (nombre) VALUES ('varchar(50)');
-            INSERT INTO CRUD_inputs (nombre) VALUES ('input');
+            INSERT INTO CRUD_columnas_tipos (nombre) VALUES ('text');
+
             INSERT INTO CRUD_inputs (nombre) VALUES ('select');
             INSERT INTO CRUD_inputs (nombre) VALUES ('textarea');
             INSERT INTO CRUD_inputs (nombre) VALUES ('datalist');
-            INSERT INTO CRUD_inputs_tipos(nombre) VALUES ('text');
-            INSERT INTO CRUD_inputs_tipos(nombre) VALUES ('tel');
-            INSERT INTO CRUD_inputs_tipos(nombre) VALUES ('button');
-            INSERT INTO CRUD_inputs_tipos(nombre) VALUES ('checkbox');
-            INSERT INTO CRUD_inputs_tipos(nombre) VALUES ('date');
-            INSERT INTO CRUD_inputs_tipos(nombre) VALUES ('email');
-            INSERT INTO CRUD_inputs_tipos(nombre) VALUES ('image');
-            INSERT INTO CRUD_inputs_tipos(nombre) VALUES ('number');
-            ";
+            INSERT INTO CRUD_inputs (nombre) VALUES ('text');
+            INSERT INTO CRUD_inputs (nombre) VALUES ('tel');
+            INSERT INTO CRUD_inputs (nombre) VALUES ('button');
+            INSERT INTO CRUD_inputs (nombre) VALUES ('checkbox');
+            INSERT INTO CRUD_inputs (nombre) VALUES ('date');
+            INSERT INTO CRUD_inputs (nombre) VALUES ('email');
+            INSERT INTO CRUD_inputs (nombre) VALUES ('image');
+            INSERT INTO CRUD_inputs (nombre) VALUES ('number');
 
+            INSERT INTO CRUD_tablas (nombre) VALUES ('terceros');
+            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('nombre',TRUE,'6','4',1);
+         
+            ";
+            /*INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('apellido',FALSE,'6','4',1);
+            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('dni',FALSE,'1','11',1);
+            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('email',FALSE,'6','9',1);
+            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('telefono',FALSE,'1','11',1);
+            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('comentarios',FALSE,'7','2',1);*/
         try {
             $this->db->exec($query);
            

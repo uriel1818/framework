@@ -111,15 +111,67 @@ class core_controller
     */
    protected function fillObjet($objet)
    {
-      $objProperties = $objet->getProperties();
-
+      $objProperties = $this->getProperties(NULL, $objet);
       foreach ($objProperties as $key => $value) {
-         $objet->$key = isset($_POST[$key]) ? '\''.$_POST[$key].'\'' : NULL ;
+         $objet->$key = isset($_POST[$key]) ? '\'' . $_POST[$key] . '\'' : NULL;
       }
-
    }
 
-   
+   /**
+    *  devuelvo los atributos y valores de la clase actual
+    * menos los que se especifican en -> $array_unset
+    *  @return array
+    */
+   public function getProperties($array_unset, $objet)
+   {
+      $array_unset[] = 'db';
+      $array_unset[] = 'table';
+      $properties = get_object_vars($objet);
+
+      foreach ($array_unset as $key => $value) {
+         unset($properties[$value]);
+      }
+
+      return $properties;
+   }
+
+   /**
+    * devuelvo string separado por coma de los atributos de la clase actual
+    *  @return string
+    */
+   private function propertiesToString($array_unset, $objet)
+   {
+
+      $keys = implode(',', array_keys($this->getProperties($array_unset, $objet)));
+      return $keys;
+   }
+
+   /**
+    *  obtengo string separado por coma 
+    *  con los valores de los atributos de la clase actual
+    *  @return string
+    */
+   private function valuesToString($array_unset, $objet)
+   {
+      $values = implode(',', array_values($this->getProperties($array_unset, $objet)));
+
+      return $values;
+   }
+
+   /**
+    * Grabo todos los modelos que tenga cargados en el controlador actual
+    * Los inputs deben tener el mismo nombre que las propiedades del modelo
+    */
+   public function save()
+   {
+      foreach ($this->models as $key => $obj) {
+         $this->fillObjet($obj);
+         $properties = $this->propertiesToString(['id'], $obj);
+         $values = $this->valuesToString(['id'], $obj);
+         $obj->insert($properties, $values);
+      }
+   }
+
    protected function run()
    {
       $this->loginCheck();
@@ -128,6 +180,7 @@ class core_controller
       require_once $this->template;
       ob_end_flush();
    }
+   
    public function index()
    {
       $this->run();

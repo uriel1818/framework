@@ -29,12 +29,6 @@ class migration_controller extends core_controller
         $this->data['errors']['fillTablesDemo'] = $this->models['migration']->fillTablesDemo();
     }
 
-    public function makeModel($model){
-        if(!file_exists(VIEW.$model.VIEW_EXT)){
-            
-        }
-    }
-
     public function index()
     {
         $this->createDB();
