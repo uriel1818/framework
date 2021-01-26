@@ -1,4 +1,5 @@
  class Sidebar {
+
     constructor(sbar, btn) {
         this.element = document.getElementById(sbar);
         this.button  = document.getElementById(btn);
@@ -43,6 +44,7 @@
         this.button.addEventListener("click",  openClose = this.openClose.bind(this)  ,false);         
     }
 }
+
 
 /** Exporto una instancia de la clase */
 let sb = new Sidebar('sidebar','menu_button');
