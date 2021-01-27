@@ -154,7 +154,7 @@ class core_controller
    private function valuesToString($array_unset, $objet)
    {
       $values = implode(',', array_values($this->getProperties($array_unset, $objet)));
-
+      
       return $values;
    }
 
@@ -162,14 +162,13 @@ class core_controller
     * Grabo todos los modelos que tenga cargados en el controlador actual
     * Los inputs deben tener el mismo nombre que las propiedades del modelo
     */
-   public function save()
-   {
-      foreach ($this->models as $key => $obj) {
-         $this->fillObjet($obj);
-         $properties = $this->propertiesToString(['id'], $obj);
-         $values = $this->valuesToString(['id'], $obj);
-         $obj->insert($properties, $values);
-      }
+   public function save($string)
+   {     
+      $model = $this->models[$string];
+         $this->fillObjet($model);
+         $properties = $this->propertiesToString(['id'], $model);
+         $values = $this->valuesToString(['id'], $model);
+         $model->insert($properties, $values);
    }
 
    protected function run()

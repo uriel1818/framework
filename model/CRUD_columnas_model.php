@@ -8,6 +8,14 @@ use app\model\core_model;
 
 class CRUD_columnas_model extends core_model
 {
+
+    public $id;
+    public $nombre;
+    public $reference_to;
+    public $fk_CRUD_columnas_tipos;
+    public $fk_CRUD_tablas;
+    public $fk_CRUD_inputs;
+
     public function __construct()
     {
         parent::__construct();
@@ -22,8 +30,7 @@ class CRUD_columnas_model extends core_model
         $query = 
         "SELECT cc.id, 
                 cc.nombre,
-                cc.reference_to,
-                cc.required, 
+                cc.reference_to, 
                 cct.nombre as type, 
                 ct.nombre as tabla, 
                 ci.nombre as input

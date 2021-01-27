@@ -14,7 +14,6 @@ class CRUD_model extends core_model
         parent::__construct();
     }
 
-
     public function createTable($table, $columns)
     {
         $sentence = "CREATE TABLE IF NOT EXISTS {$table} ( {$columns} );";

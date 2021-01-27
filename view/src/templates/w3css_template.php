@@ -29,6 +29,7 @@
     <div id="menu_button" class=" w3-btn w3-bar-item w3-rightbar w3-hide-large">&#8801</div>
     <a href="index.php" class="w3-bar-item w3-button w3-animate-top"><?php echo NOMBRE_SITIO; ?></a>
     <a href="index.php?c=login&a=logout" class="w3-right w3-bar-item w3-button w3-leftbar">Salir &#10095; </a>
+    <a href="index.php?c=crud" class="w3-right w3-bar-item w3-button w3-hide-small">>> CRUD <<</a>
     </div>
     </div>
 

@@ -10,6 +10,8 @@ use app\controller\core_controller;
 class CRUD_controller extends core_controller
 {
     private $tablas;
+    private $CRUD_columnas;
+    private $CRUD_columnas_tipos;
     private $columnas;
     private $CRUD_helper;
     private $className;
@@ -17,6 +19,7 @@ class CRUD_controller extends core_controller
     private $controllerPath;
     private $viewPath;
     private $CRUD;
+    
 
     public function __construct()
     {
@@ -31,19 +34,25 @@ class CRUD_controller extends core_controller
      */
     private function addModels(){
         $this->tablas = $this->addModel('CRUD_tablas')->getAll();
-        $this->addModel('CRUD_columnas');
+        $this->CRUD_columnas = $this->addModel('CRUD_columnas');
+        $this->CRUD_columnas_tipos = $this->addModel('CRUD_columnas_tipos');
         $this->CRUD = $this->addModel('CRUD');
+        $this->CRUD_inputs = $this->addModel('CRUD_inputs');
+
     }
 
+    /**
+     * Como utilizo varios modelos, paso solo el que yo necesito.
+     */
+    public function guardar(){
+        $this->save('CRUD_columnas');
+    }
     /**
      * Creo un archivo del tipo *_model.php
      */
     public function createModel()
     {
-        if (!file_exists($this->modelPath)) {
-            
-            $this->CRUD_helper->setColumns($this->columnas);
-            
+        if (!file_exists($this->modelPath)) {            
             $this->createFile($this->modelPath, $this->CRUD_helper->getModel());
         }
     }
@@ -106,7 +115,9 @@ class CRUD_controller extends core_controller
             throw $th;
         }
     }
-
+    /**
+     * Borra los archivos *_model.php, *_view.php y *_controller.php auto-generados
+     */
     private function deleteAll()
     {
         $dm = file_exists($this->modelPath) ? $this->deleteModel() : "";
@@ -114,6 +125,9 @@ class CRUD_controller extends core_controller
         $dm = file_exists($this->viewPath) ? $this->deleteView() : "";
     }
 
+    /**
+     * Creo archivos *_model.php, *_view.php y *_controller.php
+     */
     private function createAll()
     {
         $this->createModel();
@@ -138,6 +152,7 @@ class CRUD_controller extends core_controller
         $this->className = $obj->nombre;
         $this->columnas = $this->models['CRUD_columnas']->getColumnas($this->className);
         $this->CRUD_helper->className = $this->className;
+        $this->CRUD_helper->columns = $this->columnas;
     }
 
     /**
@@ -161,25 +176,38 @@ class CRUD_controller extends core_controller
      */
     public function validationsToString()
     {
-        
+         
     }
 
     /**
-     * Creo la tabla
+     * Creo la tabla de la nueva clase
      */
     private function createTable(){
         $this->CRUD->createTable($this->className,$this->columnsToString());
     }
 
-    public function index()
+    public function regenerateAll()
     {
         foreach ($this->tablas as $key => $obj) {
             $this->setProperties($obj); 
             $this->setPaths($obj->nombre);
             $this->createTable();
-           
+
             $this->deleteAll();
             $this->createAll();
         }
+    }
+
+    private function bindDataToView(){
+        $this->data['CRUD_columnas'] = $this->CRUD_columnas->getAll();
+        $this->data['CRUD_tablas'] = $this->tablas;
+        $this->data['CRUD_inputs'] = $this->CRUD_inputs->getAll();
+        $this->data['CRUD_columnas_tipos'] = $this->CRUD_columnas_tipos->getAll();
+    }
+
+    public function index()
+    {
+        $this->bindDataToView();
+        $this->run();
     }
 }

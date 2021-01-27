@@ -34,7 +34,6 @@ class migration_model extends core_model
                 id integer primary key,
                 nombre varchar(50),
                 reference_to varchar(50) DEFAULT NULL,
-                required boolean DEFAULT 0,
                 fk_CRUD_columnas_tipos integer DEFAULT 4 REFERENCES CRUD_columnas_tipos,
                 fk_CRUD_tablas integer NOT NULL REFERENCES CRUD_tablas,
                 fk_CRUD_inputs integer DEFAULT 4 REFERENCES CRUD_inputs
@@ -110,7 +109,6 @@ class migration_model extends core_model
 
             INSERT INTO CRUD_inputs (nombre) VALUES ('select');
             INSERT INTO CRUD_inputs (nombre) VALUES ('textarea');
-            INSERT INTO CRUD_inputs (nombre) VALUES ('datalist');
             INSERT INTO CRUD_inputs (nombre) VALUES ('text');
             INSERT INTO CRUD_inputs (nombre) VALUES ('tel');
             INSERT INTO CRUD_inputs (nombre) VALUES ('button');
@@ -121,14 +119,15 @@ class migration_model extends core_model
             INSERT INTO CRUD_inputs (nombre) VALUES ('number');
 
             INSERT INTO CRUD_tablas (nombre) VALUES ('terceros');
-            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('nombre',TRUE,'6','4',1);
-         
+            INSERT INTO CRUD_columnas (nombre,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('nombre','6','4',1);
+            INSERT INTO CRUD_columnas (nombre,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('apellido','6','4',1);
+            INSERT INTO CRUD_columnas (nombre,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('dni','1','11',1);
+            INSERT INTO CRUD_columnas (nombre,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('email','6','9',1);
+            INSERT INTO CRUD_columnas (nombre,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('telefono','1','11',1);
+            INSERT INTO CRUD_columnas (nombre,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('comentarios','7','2',1);
+            
+            
             ";
-            /*INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('apellido',FALSE,'6','4',1);
-            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('dni',FALSE,'1','11',1);
-            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('email',FALSE,'6','9',1);
-            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('telefono',FALSE,'1','11',1);
-            INSERT INTO CRUD_columnas (nombre,required,fk_CRUD_columnas_tipos,fk_CRUD_inputs,fk_CRUD_tablas) VALUES ('comentarios',FALSE,'7','2',1);*/
         try {
             $this->db->exec($query);
            

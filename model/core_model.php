@@ -81,8 +81,13 @@ class core_model
      */
     public function insert($keys,$values)
     {
-       $query = $this->db->exec("INSERT INTO {$this->table} ({$keys}) VALUES ({$values})") ;
-        var_dump($query);
+        try {
+            print_r("INSERT INTO {$this->table} ({$keys}) VALUES ({$values});");
+            $query = $this->db->exec("INSERT INTO {$this->table} ({$keys}) VALUES ({$values});") ;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+       
         return $query;
     }
 
